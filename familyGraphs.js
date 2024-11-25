@@ -206,12 +206,12 @@ node.append("circle")
     .attr("r", 40)  // Increase circle size for icons
     .style("fill", d => d.color);
 
-node.append("image")
-    .attr("xlink:href", d => d.img)  // Set image URL
-    .attr("x", -20)  // Position image in center
-    .attr("y", -20)
-    .attr("width", 40)
-    .attr("height", 40);
+//node.append("image")
+//    .attr("xlink:href", d => d.img)  // Set image URL
+//    .attr("x", -20)  // Position image in center
+//    .attr("y", -20)
+//   .attr("width", 40)
+//  .attr("height", 40);
 
 node.append("text")
     .attr("dy", 55)  // Position text below the circle
