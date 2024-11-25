@@ -1,0 +1,357 @@
+/* General body settings */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e5f1ec; /* Light green from the image */
+    background-image: url('fullteambg.png'); /* Set background image */
+    background-size: contain; /* Ensure the image is not stretched */
+    background-position: bottom center; /* Fix the image at the bottom */
+    background-repeat: no-repeat; /* Prevent repetition */
+    background-attachment: fixed; /* Keep the image fixed on scroll */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+body.page2 {
+    background-image: url('2bgmaybe.png');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #e0d9d9;
+}
+/* Transparent Header with Sticky Menu Icon */
+nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-start;
+    padding: 1em;
+    background-color: transparent;
+}
+
+/* Updated .menu-icon styling */
+.menu-icon {
+    font-size: 2em;
+    color: white;
+    cursor: pointer;
+    background-color: rgba(211, 211, 211, 1); /* Light gray background for the icon */
+    border-radius: 50%;  /* Circle behind the menu icon */
+    padding: 10px;
+    position: relative;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    z-index: 1100; /* Ensure the menu icon stays on top */
+    margin-left: 20px;  /* Spacing from the left edge */
+}
+
+/* Before adding content (hamburger lines) */
+.menu-icon::before {
+    font-size: 1.5em;
+    color: white;
+    position: absolute;
+}
+
+/* When the menu is active, show "X" and hide the three lines */
+.menu-icon.active::before {
+    content: "X";
+    font-size: 1em;
+    color: white; /* Light gray "X" color */
+    background-color: #d3d3d3; /* Remove background color */
+}
+
+.menu-icon.active {
+    transform: rotate(34deg);
+}
+
+/* Fullscreen menu with light gray background */
+#menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #EDEDED;  /* Light gray background */
+    background-image: url('menubg2.png'); /* Set the menubg image */
+    background-size: 60%; /* Ensure the entire image fits inside the container */
+    background-position: bottom center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    overflow: hidden;
+    list-style-type: none;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;  /* Stack menu options vertically */
+    border: none; /* Remove any border */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    box-shadow: none; /* Ensure no box-shadow */
+}
+
+#menu li {
+    padding: 20px;
+    font-size: 1.5em;
+    list-style-type: none;
+}
+
+#menu li a {
+    text-decoration: none;
+    color: #a2e0bb;
+}
+
+/* Main layout */
+.content-container {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    width: calc(100% - 30px); /* 30px from the right edge */
+    margin-top: 100px;  /* Add space because of the fixed menu */
+}
+
+.main-content {
+    text-align: center;
+    flex-grow: 3;  /* Takes up most of the space */
+    display: flex;
+    flex-direction: column; /* Ensure children stack vertically */
+    align-items: center; /* Center children horizontally */
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    /* Animation on image click */
+    animation: none;
+}
+h1 {
+    font-size: 14px;
+    font-weight: normal;
+}
+.circle-box {
+    background: rgba(60, 60, 60, 0.5);  /* Semi-transparent background */
+    border-radius: 15px;  /* This will round the corners */
+    padding: 10px;
+    display: inline-block;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.circle-box div {
+    margin-bottom: 5px;
+}
+/* Subtle and slower shake animation */
+@keyframes shake {
+    0% { transform: rotate(0); }
+    25% { transform: rotate(-1deg); }
+    50% { transform: rotate(1deg); }
+    75% { transform: rotate(-0.5deg); }
+    100% { transform: rotate(0); }
+}
+
+
+.image-container img {
+    width: 100%; /* Make the image responsive */
+    max-width: 300px; /* Set a maximum width */
+    height: auto; /* Maintain aspect ratio */
+    border: 10px solid #fff;  /* White frame around the image */
+    border-radius: 10px;  /* Slight rounded corners to simulate a real frame */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.23);  /* 3D shadow */
+    transition: transform 0.3s ease;
+}
+
+.text-container {
+    margin-top: 20px;
+    font-size: 1.2em;
+    display: inline-block;  /* Keep the text in the same spot */
+    width: 100%; /* Ensure it doesn't shift */
+}
+
+/* Circle section now aligned to the right */
+.circle-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 30px;
+}
+
+
+/* Position sub-circles under the main image */
+
+.sub-circle-container {
+    display: none; /* Initially hidden */
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-rows: repeat(3, 1fr); /* Three rows */
+    justify-items: center; /* Center items within each grid cell */
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+}
+
+/* When revealed, make sure it's grid-based */
+.sub-circle-container.show {
+    display: grid; /* Ensure it stays a grid when shown */
+    grid-template-columns: repeat(2, 1fr); /* Ensure there are always 2 columns */
+    grid-template-rows: auto; /* Rows adjust automatically based on content */
+    gap: 6px; /* Space between sub-circles */
+    justify-items: center;
+    align-items: center;
+    }
+
+/* Style the individual sub-circles */
+.sub-circle {
+    width: 48px; /* Set fixed size */
+    height: 48px;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+    overflow: hidden;
+}
+.sub-circle-container.single-item {
+    display: flex; /* Use flexbox when there is only 1 sub-circle */
+    justify-content: center; /* Center the single sub-circle horizontally */
+    align-items: center; /* Center the single sub-circle vertically */
+}
+.sub-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(2);
+    border-radius: 50%;
+}
+
+/* Pulse effect for red circles */
+.sub-circle.pulse {
+    animation: pulse2 1s infinite;
+}
+
+/* Pulse effect when the sub-circle is clicked */
+.sub-circle.pulse {
+    animation: pulse2 1s infinite;
+}
+.node circle {
+  cursor: pointer;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  pointer-events: none;
+  font-size: 12px;
+  fill: #333;
+}
+
+.link {
+  fill: none;
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+.circle {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background-color: #d3d3d3;  /* Light gray background for the circular container */
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    margin: 10px;  /* Space between circles */
+}
+
+.circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.circle:hover {
+    box-shadow: 0 0 20px rgba(0, 181, 226, 0.8);
+}
+
+/* Subtle Pulse Effect */
+.pulse {
+    animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 181, 226, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 181, 226, 1.0);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(0, 181, 226, 0.6);
+    }
+}
+
+@keyframes pulse2 {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 102, 178, 1.1);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 102, 178, 1.6);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 102, 178, 1.1);
+    }
+}
+
+/* Smaller Red Circle Sizes on Mobile */
+@media (max-width: 600px) {
+.circle {
+    width: 40px;
+    height: 40px;
+   }
+    .sub-circle {
+        width: 26px;
+        height: 26px;
+    }
+    .menu-icon {
+    width: 28px;
+    height: 28px;
+   }
+}
+@media (min-width: 600px) and (max-width: 1050px) {
+    .circle {
+    width: 55px;
+    height: 55px;
+   }
+    .sub-circle {
+        width: 32px;
+        height: 32px;
+    }
+        .menu-icon {
+    width: 32px;
+    height: 32px;
+   }
+    .content-container {
+    width: 95%; 
+    }
+}
+
+/* Larger screens (above 1200px) */
+@media (min-width: 1050px) {
+   .circle {
+    width: 72px;
+    height: 72px;
+   }
+    .sub-circle {
+        width: 42px;
+        height: 42px; /* Max size for larger screens */
+    }
+    .content-container {
+    width: 93%; 
+    }
+}
